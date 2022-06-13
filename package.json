@@ -7,6 +7,7 @@
     "compression": "^1.7.4",
     "express": "^4.17.1",
     "marko": "^5.15.1",
+    "payload": "^0.17.3",
     "raptor-pubsub": "^1.0.5"
   },
   "devDependencies": {
@@ -19,11 +20,12 @@
   },
   "private": true,
   "scripts": {
-    "build": "rimraf dist && npm run build:server && npm run build:client",
-    "build:client": "cross-env NODE_ENV=production vite build",
-    "build:server": "cross-env NODE_ENV=production vite build --ssr src/index.js",
-    "dev": "node --enable-source-maps index.js",
-    "dev:inspect": "node --inspect --enable-source-maps index.js",
-    "start": "cross-env NODE_ENV=production node --enable-source-maps index.js"
+    "build": "rimraf production && ./bin/build.sh",
+    "build:client": "cross-env PAYLOAD_CONFIG_PATH=payload.config.js NODE_ENV=production vite build",
+    "build:server": "cross-env PAYLOAD_CONFIG_PATH=payload.config.js NODE_ENV=production vite build --ssr src/index.js",
+    "build:payload": "cross-env PAYLOAD_CONFIG_PATH=payload.config.js payload build",
+    "dev": "cross-env PAYLOAD_CONFIG_PATH=payload.config.js node --enable-source-maps index.js",
+    "dev:inspect": "cross-env PAYLOAD_CONFIG_PATH=payload.config.js node --inspect --enable-source-maps index.js",
+    "start": "cross-env NODE_ENV=production PAYLOAD_CONFIG_PATH=payload.config.js node production/index.js"
   }
 }
