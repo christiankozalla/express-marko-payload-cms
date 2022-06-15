@@ -1,7 +1,11 @@
-import { Router } from "express";
-import indexPage from "./pages/index";
-import usersService from "./services/users";
+import { Router } from 'express';
+import indexPage from './pages/index';
+import postsPage from './pages/posts';
+
+import errorPage from './pages/error';
 
 export default Router()
-  .get("/", indexPage)
-  .get("/services/users", usersService);
+  .get('/', indexPage)
+  .get('/posts', postsPage)
+  .get('/posts/:id', postsPage)
+  .get('/error', errorPage);
