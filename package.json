@@ -1,29 +1,30 @@
 {
   "name": "michaels-marko-blog",
-  "description": "Sample app that demonstrates the power of building UI components using Marko, Vite, and Express",
+  "description": "blog with express, marko.js and payload cms",
   "version": "1.0.0",
   "dependencies": {
-    "@marko/express": "^1.0.0",
+    "@marko/express": "2.0.1",
     "compression": "^1.7.4",
     "express": "^4.17.1",
     "marko": "^5.15.1",
-    "payload": "^0.18.0"
+    "payload": "1.0.27"
   },
   "devDependencies": {
     "@marko/compiler": "^5.15.0",
     "@marko/vite": "^2.0.0",
     "cross-env": "^7.0.3",
     "rimraf": "^3.0.2",
-    "vite": "^2.4.4"
+    "vite": "3.0.9"
   },
   "private": true,
   "scripts": {
     "build": "rimraf production && ./bin/build.sh",
     "build:client": "cross-env PAYLOAD_CONFIG_PATH=payload.config.js NODE_ENV=production vite build",
-    "build:server": "cross-env PAYLOAD_CONFIG_PATH=payload.config.js NODE_ENV=production vite build --ssr src/index.js",
+    "build:server": "cross-env PAYLOAD_CONFIG_PATH=payload.config.js NODE_ENV=production vite build --ssr src/router.js",
     "build:payload": "cross-env PAYLOAD_CONFIG_PATH=payload.config.js payload build",
     "dev": "cross-env PAYLOAD_CONFIG_PATH=payload.config.js node --enable-source-maps index.js",
     "dev:inspect": "cross-env PAYLOAD_CONFIG_PATH=payload.config.js node --inspect --enable-source-maps index.js",
-    "start": "cross-env NODE_ENV=production PAYLOAD_CONFIG_PATH=payload.config.js node production/index.js"
+    "start": "cross-env NODE_ENV=production PAYLOAD_CONFIG_PATH=payload.config.js node production/index.js",
+    "db:start": "mongod --dbpath ./data"
   }
 }

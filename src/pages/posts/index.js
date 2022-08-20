@@ -2,28 +2,18 @@ import payload from 'payload';
 import template from './template.marko';
 
 export default async (req, res) => {
-  if (req.params.id) {
-    try {
-      const post = await payload.findByID({
-        collection: 'posts', // required
-        id: req.params.id, // required
-        depth: 2,
-        locale: 'de',
-        fallbackLocale: false,
-        overrideAccess: false,
-        showHiddenFields: true
-      });
+  try {
+    const posts = await payload.find({
+      collection: 'posts'
+    });
 
-      // if no post is found under params.id
-      // an error is thrown by payload
-      return res.marko(template, { post });
-    } catch (err) {
-      if (err instanceof Error) {
-        res.errorMessage = err.message;
-        return res.redirect(`/error`);
-      }
+    console.log(posts);
+
+    return res.marko(template, { posts: posts.docs });
+  } catch (err) {
+    if (err instanceof Error) {
+      res.errorMessage = err.message;
+      return res.redirect(`/error?message=${err.message}`);
     }
   }
-  // no params.id
-  res.marko(template, {});
 };

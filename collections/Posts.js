@@ -33,6 +33,11 @@ const Posts = {
       hasMany: true
     },
     {
+      name: 'image',
+      type: 'upload',
+      relationTo: 'media'
+    },
+    {
       name: 'content',
       type: 'richText'
     },

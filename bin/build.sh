@@ -16,4 +16,6 @@ mkdir production
 mv dist build production
 cp -r collections .env payload.config.js index.js production
 
-echo 'cd into production and start the server with  `PAYLOAD_CONFIG_PATH=payload.config.js NODE_ENV=production node index.js`'
+echo 'cd into production and start the server with\n' \
+'`$ PAYLOAD_CONFIG_PATH=payload.config.js NODE_ENV=production node index.js`\n' \
+'or `$ npm run start`'

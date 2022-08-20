@@ -30,7 +30,7 @@ const port = process.env.PORT || 3000;
     });
     app.use(devServer.middlewares);
     app.use(async (req, res, next) =>
-      (await devServer.ssrLoadModule('./src/index')).default(
+      (await devServer.ssrLoadModule('./src/router')).default(
         req,
         res,
         (err) => {

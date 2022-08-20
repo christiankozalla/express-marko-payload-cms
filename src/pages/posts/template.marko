@@ -1,6 +1,11 @@
-$ const post = input.post;
-
 <blog-layout>
   <@head><title>UI Components Playground</title></@head>
-  <@body><blog-post post=post/></@body>
+  <@body>
+    <h1>A list of posts</h1>
+    <ul>
+      <for|post| of=input.posts>
+        <li><h2>${post.title}<br><small>by ${post.author.name}</small></h2></li>
+      </for>
+    </ul>
+  </@body>
 </blog-layout>

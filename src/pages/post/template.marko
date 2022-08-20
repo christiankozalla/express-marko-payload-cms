@@ -1,0 +1,11 @@
+$ const post = input.post;
+
+<blog-layout>
+  <@head><title>Strategie 3 - ${post.title}</title></@head>
+  <@body>
+    <if(post.image)>
+      <img src=(post.image.url)>
+    </if>
+    <blog-post post=post/>
+  </@body>
+</blog-layout>
