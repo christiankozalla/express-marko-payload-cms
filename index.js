@@ -21,9 +21,14 @@ const port = process.env.PORT || 3000;
   });
 
   if (isProd) {
+    const router = await import('./dist/router.mjs').then(
+      (module) => module.default
+    );
+    const path = await import('path').then((module) => module.default);
+
     app
-      .use('/assets', express.static('dist/assets')) // Serve assets generated from vite.
-      .use(require('./dist').default); // Use the default export from `./dist/index.js`
+      .use('/assets', express.static(path.join(__dirname, 'dist', 'assets'))) // Serve assets generated from vite.
+      .use(router);
   } else {
     const devServer = await require('vite').createServer({
       server: { middlewareMode: true }
